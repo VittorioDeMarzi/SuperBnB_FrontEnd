@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function LoginPage() {
+export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  async function login(event) {
+  async function signup(event) {
     event.preventDefault();
     setError("");
     const auth = {
@@ -19,7 +19,7 @@ export default function LoginPage() {
     console.log(`${import.meta.env.VITE_BACKEND}/api/v1/auth/signin`);
     try {
       const response = await fetch(
-        import.meta.env.VITE_BACKEND + "/api/v1/auth/signin",
+        import.meta.env.VITE_BACKEND + "/api/v1/auth/signup",
         {
           method: "POST",
           headers: {
@@ -37,12 +37,11 @@ export default function LoginPage() {
         }
       }
 
-      const data = await response.json(); // Parse JSON only if request is successful
-      localStorage.setItem("token", data.token);
-      navigate("/home"); // Redirect to another page after successful login
+      const data = await response.json(); 
+      navigate("/login"); 
     } catch (error) {
       console.error("Error:", error.message);
-      setError(error.message); // Show error to user
+      setError(error.message); 
     }
   }
 
@@ -53,10 +52,10 @@ export default function LoginPage() {
 
         <section className=" flex justify-center items-center absolute inset-0">
           <form
-            onSubmit={login}
+            onSubmit={signup}
             className=" bg-white bg-opacity-75 p-6 rounded-lg shadow-md w-96"
           >
-            <h2 className="text-2xl font-semibold mb-4 text-center">Login</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-center">Sign up</h2>
             <div className="mb-4">
               <label htmlFor="email" className="block text-gray-700">
                 Email
@@ -83,9 +82,7 @@ export default function LoginPage() {
                 required
               />
             </div>
-            <Link to="/signup">
-              Don't have an account? Sign up
-              </Link>
+            <a href="/login">Already have an account? Log in</a>
             <button
               type="submit"
               className="w-full bg-ocra hover:bg-background text-white font-bold py-2 rounded"

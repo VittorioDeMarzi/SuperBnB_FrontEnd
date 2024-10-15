@@ -6,12 +6,14 @@ import Header from "./Main/Header";
 export default function Layout() {
   return (
     <>
-      <Navbar />
-      <main>
-        <Outlet />
-      </main>
+      <div className="bg-background">
+        <Navbar />
+        <main>
+          <Outlet />
+        </main>
 
-      <Footer />
+        <Footer />
+      </div>
     </>
   );
 }
