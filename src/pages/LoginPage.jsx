@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from '../components/auth';
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useAuth();
+
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  async function login(event) {
+  async function loginFunction(event) {
     event.preventDefault();
     setError("");
     const auth = {
@@ -37,12 +40,12 @@ export default function LoginPage() {
         }
       }
 
-      const data = await response.json(); // Parse JSON only if request is successful
-      localStorage.setItem("token", data.token);
-      navigate("/home"); // Redirect to another page after successful login
+      const data = await response.json(); 
+      login(data.token); 
+      navigate("/home"); 
     } catch (error) {
       console.error("Error:", error.message);
-      setError(error.message); // Show error to user
+      setError(error.message); 
     }
   }
 
@@ -53,7 +56,7 @@ export default function LoginPage() {
 
         <section className=" flex justify-center items-center absolute inset-0">
           <form
-            onSubmit={login}
+            onSubmit={loginFunction}
             className=" bg-white bg-opacity-75 p-6 rounded-lg shadow-md w-96"
           >
             <h2 className="text-2xl font-semibold mb-4 text-center">Login</h2>

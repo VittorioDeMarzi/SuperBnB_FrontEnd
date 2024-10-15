@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useAuth } from '../auth';
 
 export default function Navbar() {
+  const auth = useAuth();
+
   return (
     <nav className=" bg-slate-50 bg-opacity-80 shadow fixed top-0 left-0 w-full z-10">
       <div className="max-w-7xl mx-auto px-4 py-2 flex justify-between p-6">
@@ -13,9 +16,10 @@ export default function Navbar() {
           <Link to="/Profile">
             <li>Profile</li>
           </Link>
-          <Link to="/login">
+          {!auth.token && <Link to="/login">
             <li>Log In</li>
-          </Link>
+          </Link>}
+          
         </ul>
       </div>
     </nav>
