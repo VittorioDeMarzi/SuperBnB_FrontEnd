@@ -5,32 +5,46 @@ import { useNavigate } from "react-router-dom";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  function login(event) {
+  async function login(event) {
     event.preventDefault();
+    setError("");
     const auth = {
       email,
       password,
     };
+    console.log(auth);
     const encoded = btoa(email + ":" + password);
-    console.log(encoded);
     console.log(`${import.meta.env.VITE_BACKEND}/api/v1/auth/signin`);
-    fetch(import.meta.env.VITE_BACKEND + "/api/v1/auth/signin", {
-      method: "POST",
-      headers: {
-        Authorization: "Basic " + encoded,
-      },
-    })
-      .then((response) => {
-        if (response.ok) return response.json();
-        throw new Error("Errore di autenticazione");
-      })
-      .then((data) => {
-        console.log(data);
-        localStorage.setItem("token", data.token);
-        navigate("/");
-      });
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_BACKEND + "/api/v1/auth/signin",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Basic " + encoded,
+          },
+          body: JSON.stringify(auth),
+        }
+      );
+      if (!response.ok) {
+        if (response.status === 401) {
+          throw new Error("Unauthorized: Invalid email or password.");
+        } else {
+          throw new Error(`Error: ${response.statusText}`);
+        }
+      }
+
+      const data = await response.json(); // Parse JSON only if request is successful
+      localStorage.setItem("token", data.token);
+      navigate("/"); // Redirect to another page after successful login
+    } catch (error) {
+      console.error("Error:", error.message);
+      setError(error.message); // Show error to user
+    }
   }
 
   return (
