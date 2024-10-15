@@ -8,6 +8,7 @@
     box-sizing: border-box;
 }
 
-header h2 {
-    color: #ba8a3b;
+html {
+    background-color: #ffe8ca;
+
 }

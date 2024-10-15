@@ -48,9 +48,9 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="bg-[url('src/assets/images/manuel-moreno-DGa0LQ0yDPc-unsplash.jpg')] bg-cover bg-center h-screen relative">
-      <Navbar />
-      <section className=" flex justify-center items-center absolute inset-0">
+    <div className="parallax relative bg-[url('src/assets/images/manuel-moreno-DGa0LQ0yDPc-unsplash.jpg')] bg-fixed bg-center bg-no-repeat bg-cover h-screen mt-12mb-4"
+    >
+      <section className=" flex justify-center items-center absolute inset-0 bg-white bg-opacity-30">
         <form
           onSubmit={login}
           className=" bg-white bg-opacity-75 p-6 rounded-lg shadow-md w-96"
@@ -82,14 +82,15 @@ export default function LoginPage() {
               required
             />
           </div>
+          <a href="/registration">Don't have an account? Sign up</a>
           <button
             type="submit"
-            className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded"
+            className="w-full bg-ocra hover:bg-background text-white font-bold py-2 rounded"
           >
             Login
           </button>
         </form>
       </section>
-    </main>
+    </div>
   );
 }
