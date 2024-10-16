@@ -16,7 +16,6 @@ export default function Signup() {
     };
     console.log(auth);
     const encoded = btoa(email + ":" + password);
-    console.log(`${import.meta.env.VITE_BACKEND}/api/v1/auth/signin`);
     try {
       const response = await fetch(
         import.meta.env.VITE_BACKEND + "/api/v1/auth/signup",
@@ -47,7 +46,7 @@ export default function Signup() {
 
   return (
     <>
-      <div className="parallax relative bg-[url('src/assets/images/manuel-moreno-DGa0LQ0yDPc-unsplash.jpg')] bg-fixed bg-center bg-no-repeat bg-cover h-[70vh] mt-12 mb-4">
+      <div className="parallax relative bg-[url('src/assets/images/manuel-moreno-DGa0LQ0yDPc-unsplash.jpg')] bg-fixed bg-center bg-no-repeat bg-cover h-[70vh] mb-4">
         <div className="absolute inset-0 bg-white bg-opacity-30"></div>
 
         <section className=" flex justify-center items-center absolute inset-0">
@@ -82,7 +81,9 @@ export default function Signup() {
                 required
               />
             </div>
-            <a href="/login">Already have an account? Log in</a>
+            <Link to="/login">
+            Already have an account? Log in
+              </Link>
             <button
               type="submit"
               className="w-full bg-ocra hover:bg-background text-white font-bold py-2 rounded"

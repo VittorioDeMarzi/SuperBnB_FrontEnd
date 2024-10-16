@@ -10,7 +10,7 @@ export default function Profile() {
       navigate("/home")
   };
   return (
-    <div className="mt-12">
+    <div>
       <div>Profile</div>
       <button
         onClick={handleLogOut}

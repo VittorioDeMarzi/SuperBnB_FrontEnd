@@ -8,6 +8,7 @@ import Layout from "./components/Layout.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import Profile from "./pages/Profile.jsx";
 import Signup from "./pages/Signup.jsx";
+import AddProperty from "./pages/AddProperty";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
+      },
+      {
+        path: "/add-property",
+        element: <AddProperty />,
       },
 
     ],
