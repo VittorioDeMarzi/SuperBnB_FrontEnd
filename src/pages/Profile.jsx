@@ -2,7 +2,8 @@ import { useAuth } from "../components/auth";
 import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
-    const auth = useAuth();
+  const auth= useAuth();
+  
     const navigate = useNavigate()
 
   const handleLogOut = () => {
@@ -11,7 +12,7 @@ export default function Profile() {
   };
   return (
     <div>
-      <div>Profile</div>
+      <div>Hi, {auth.user}</div>
       <button
         onClick={handleLogOut}
         className="p-11 bg-ocra hover:bg-background text-white font-bold py-2 rounded"

@@ -1,6 +1,11 @@
-import { useState } from "react";
-export default function AddPropert() {
+import { useEffect, useState } from "react";
+import { useAuth } from "../components/auth";
+import { useNavigate } from "react-router-dom";
+
+export default function AddProperty() {
   const [errors, setErrors] = useState([]);
+    const navigate = useNavigate();
+    const role = useAuth();
 
   const [property, setProperty] = useState({
     title: "",
@@ -91,16 +96,16 @@ export default function AddPropert() {
           }
         );
         if (!response.ok) {
-          console.log("che succede??");
           if (response.status === 401) {
-            throw new Error("Something went wrong");
-          } else {
-            throw new Error(`Error: ${response.statusText}`);
+            throw new Error(
+              `Something went wrong , Error: ${response.statusText}`
+            );
           }
         }
 
         const data = await response.json();
         console.log(data);
+        navigate("/home");
       } catch (error) {
         console.error("Error:", error.message);
       }

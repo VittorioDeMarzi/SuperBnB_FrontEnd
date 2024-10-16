@@ -15,7 +15,7 @@ export default function Signup() {
       password,
     };
     console.log(auth);
-    const encoded = btoa(email + ":" + password);
+
     try {
       const response = await fetch(
         import.meta.env.VITE_BACKEND + "/api/v1/auth/signup",
@@ -23,7 +23,6 @@ export default function Signup() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Basic " + encoded,
           },
           body: JSON.stringify(auth),
         }
@@ -88,7 +87,7 @@ export default function Signup() {
               type="submit"
               className="w-full bg-ocra hover:bg-background text-white font-bold py-2 rounded"
             >
-              Login
+              Sign up
             </button>
           </form>
         </section>

@@ -41,7 +41,8 @@ export default function LoginPage() {
       }
 
       const data = await response.json(); 
-      login(data.token); 
+      console.log(data)
+      login(data.token, data.email, data.role); 
       navigate("/home"); 
     } catch (error) {
       console.error("Error:", error.message);

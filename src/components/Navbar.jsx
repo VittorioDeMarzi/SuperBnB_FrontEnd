@@ -3,6 +3,7 @@ import { useAuth } from "./auth";
 
 export default function Navbar() {
   const auth = useAuth();
+  const { role } = useAuth();
 
   return (
     <nav className=" bg-background bg-opacity-70 shadow fixed top-0 left-0 w-full z-10">
@@ -16,9 +17,11 @@ export default function Navbar() {
           <Link to="/Profile">
             <li>Profile</li>
           </Link>
-          <Link to="/add-property">
-            <li>Add your Property</li>
-          </Link>
+          {role === "ADMIN" && (
+            <Link to="/add-property">
+              <li>Add your Property</li>
+            </Link>
+          )}
           {!auth.token && (
             <Link to="/login">
               <li>Log In</li>

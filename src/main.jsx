@@ -9,6 +9,7 @@ import HomePage from "./pages/HomePage.jsx";
 import Profile from "./pages/Profile.jsx";
 import Signup from "./pages/Signup.jsx";
 import AddProperty from "./pages/AddProperty";
+import ProtectorElement from "./pages/ProtectorUserElement.jsx";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <Profile />,
+        element: <ProtectorElement element={<Profile />}/>,
       },
       {
         path: "/add-property",
