@@ -12,6 +12,8 @@ const AuthProvider = ({ children }) => {
     localStorage.setItem("token", receivedToken);
     setUser(user);
     setRole(role);
+    localStorage.setItem("user", user);
+    localStorage.setItem("role", role);
 
     console.log(user + ", " + role)
   };
@@ -19,12 +21,19 @@ const AuthProvider = ({ children }) => {
   const logout = () => {
     setToken(null);
     setUser(null);
+    setRole(null);
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("role");
   };
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
+    const storedUser = localStorage.getItem("user");
+    const storedRole = localStorage.getItem("role");
     if (storedToken) {
+      setUser(storedUser);
+      setRole(storedRole);
       setToken(storedToken);
     }
   }, []);

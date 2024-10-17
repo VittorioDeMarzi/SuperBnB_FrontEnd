@@ -105,7 +105,8 @@ export default function AddProperty() {
 
         const data = await response.json();
         console.log(data);
-        navigate("/home");
+        console.log(data.id)
+        navigate(`/property-controll/${data.id}`);
       } catch (error) {
         console.error("Error:", error.message);
       }

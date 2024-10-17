@@ -19,7 +19,7 @@ export default function Navbar() {
           </Link>
           {role === "ADMIN" && (
             <Link to="/add-property">
-              <li>Add your Property</li>
+              <li>Add Property</li>
             </Link>
           )}
           {!auth.token && (
