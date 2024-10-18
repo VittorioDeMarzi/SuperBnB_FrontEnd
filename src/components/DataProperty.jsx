@@ -78,9 +78,7 @@ export default function DataProperty({ property }) {
             Delete
           </button>
         </div>
-          </div>
-          
-         
+      </div>
     </>
   );
 }

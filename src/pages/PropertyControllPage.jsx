@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../components/auth";
 import { useNavigate, useParams } from "react-router-dom";
 import DataProperty from "../components/DataProperty";
-import ShowAddImags from "../components/ShowAddImags";
+import ProprtyImages from "../components/PropertyImages";
 
 export default function PropertyControllPage() {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -14,8 +14,8 @@ export default function PropertyControllPage() {
   useEffect(() => {
     if (auth && auth.role) {
       checkIfAdmin();
-      fetchDataApartment();
     }
+    fetchDataApartment();
   }, []);
 
   async function fetchDataApartment() {
@@ -58,27 +58,13 @@ export default function PropertyControllPage() {
     <>
       <section className=" min-h-screen p-12">
         {isAdmin ? (
-          <h2 className=" text-3xl mb-12">Admin Control Panel for property</h2>
+          <h2 className=" text-3xl mb-12">Admin Control Panel</h2>
         ) : (
           <h2 className=" min-h-screen">Checking permissions...</h2>
         )}
               <DataProperty property={property} />
-              <ShowAddImags property={property} />
-              {property.picUrls && property.picUrls.length > 0 && (
-        <div>
-          <h4 className="font-semibold">Images</h4>
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-            {property.picUrls.map((url, index) => (
-              <img
-                key={index}
-                src={url}
-                alt={`Property Image ${index + 1}`}
-                className="w-full h-auto rounded-lg shadow-lg" 
-              />
-            ))}
-          </div>
-        </div>
-      )}
+              <ProprtyImages property={property} />
+              
           </section>
         
     </>

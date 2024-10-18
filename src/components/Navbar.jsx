@@ -18,9 +18,15 @@ export default function Navbar() {
             <li>Profile</li>
           </Link>
           {role === "ADMIN" && (
+            <>
             <Link to="/add-property">
               <li>Add Property</li>
             </Link>
+            <Link to="/admin-overview">
+              <li>Admin Overview</li>
+            </Link>
+            </>
+            
           )}
           {!auth.token && (
             <Link to="/login">

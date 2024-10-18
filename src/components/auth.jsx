@@ -1,6 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
 
-
 const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
@@ -34,6 +33,12 @@ const AuthProvider = ({ children }) => {
     const storedRole = localStorage.getItem("role");
 
     if (storedToken) {
+      setToken(storedToken);
+      setRole(storedRole);
+      setUser(storedUser);
+    }
+    /* if (storedToken) {
+    
       fetch(import.meta.env.VITE_BACKEND + "/api/v1/auth/user", {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
@@ -43,11 +48,13 @@ const AuthProvider = ({ children }) => {
           setUser(storedUser);
           setRole(storedRole);
           setToken(storedToken);
+          console.log(`You are an loggedin as `)
         } else {
           logout();
+          
         }
       });
-    }
+    }  */
   }, []);
 
   return (

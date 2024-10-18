@@ -11,6 +11,7 @@ import Signup from "./pages/Signup.jsx";
 import AddProperty from "./pages/AddProperty";
 import ProtectorElement from "./pages/ProtectorUserElement.jsx";
 import PropertyControllPage from "./pages/PropertyControllPage.jsx";
+import AdminOverview from "./pages/AdminOverview.jsx";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "/property-controll/:id",
         element: <ProtectorElement element={<PropertyControllPage/>} />,
+      },
+      {
+        path: "/admin-overview",
+        element: <ProtectorElement element={<AdminOverview/>} />,
       },
 
     ],
