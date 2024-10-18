@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Signup() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ export default function Signup() {
     event.preventDefault();
     setError("");
     const auth = {
-      email,
+      username,
       password,
     };
     console.log(auth);
@@ -28,18 +28,12 @@ export default function Signup() {
         }
       );
       if (!response.ok) {
-        if (response.status === 401) {
-          throw new Error("Unauthorized: Invalid email or password.");
-        } else {
-          throw new Error(`Error: ${response.statusText}`);
-        }
+        throw new Error(`Error: ${response.statusText}`);
       }
-
-      const data = await response.json(); 
-      navigate("/login"); 
+      navigate("/login");
     } catch (error) {
       console.error("Error:", error.message);
-      setError(error.message); 
+      setError(error.message);
     }
   }
 
@@ -59,7 +53,7 @@ export default function Signup() {
                 Email
               </label>
               <input
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setUsername(e.target.value)}
                 type="email"
                 id="email"
                 className="mt-1 block w-full p-2 border border-gray-300 rounded"
@@ -80,9 +74,7 @@ export default function Signup() {
                 required
               />
             </div>
-            <Link to="/login">
-            Already have an account? Log in
-              </Link>
+            <Link to="/login">Already have an account? Log in</Link>
             <button
               type="submit"
               className="w-full bg-ocra hover:bg-background text-white font-bold py-2 rounded"

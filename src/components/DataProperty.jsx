@@ -40,7 +40,7 @@ export default function DataProperty({ property }) {
 
   return (
     <>
-      <div className="max-w-lg mx-auto bg-white rounded-lg shadow-md p-6 border border-gray-300 bg-opacity-90">
+      <div className="max-w-full mx-auto bg-white rounded-lg shadow-md p-6 border border-gray-300 bg-opacity-90 mb-12">
         <div className="mb-4">
           <h3 className="text-xl font-semibold text-gray-800">
             {property.title}
@@ -66,7 +66,7 @@ export default function DataProperty({ property }) {
 
         <p className="text-lg font-bold text-gray-800">
           Price from:{" "}
-          <span className="text-green-600">${property.minPricePerNight}</span>{" "}
+          <span className="text-green-600">€{property.minPricePerNight}</span>{" "}
           per night
         </p>
 

@@ -1,43 +1,48 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import AddProperty from "./AddProperty";
 
 export default function AdminOverview() {
-  const [allProperties, setAllProperties] = useState([]);
-  const navigate = useNavigate();
+    const [allProperties, setAllProperties] = useState([]);
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    loadPropertiesList();
-  }, []);
+    useEffect(() => {
+        loadPropertiesList();
+    }, []);
 
-  async function loadPropertiesList() {
-    try {
-      const response = await fetch(
-        import.meta.env.VITE_BACKEND + "/api/v1/superbeb/property",
-        {
-          method: "GET",
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
+    async function loadPropertiesList() {
+        try {
+            const response = await fetch(
+                import.meta.env.VITE_BACKEND + "/api/v1/superbeb/property",
+                {
+                    method: "GET",
+                    headers: {
+                        Authorization: "Bearer " + localStorage.getItem("token"),
+                    },
+                }
+            );
+            if (!response.ok) throw new Error("Error loading Properties List");
+
+            const data = await response.json();
+            setAllProperties(data);
+        } catch (error) {
+            console.log("Error:", error.message);
         }
-      );
-      if (!response.ok) throw new Error("Error loading Properties List");
-
-      const data = await response.json();
-      setAllProperties(data);
-    } catch (error) {
-      console.log("Error:", error.message);
     }
-  }
 
-  function viewDetails(propertyId) {
-    navigate(`/property-controll/${propertyId}`);
-  }
+    function viewDetails(propertyId) {
+        navigate(`/property-controll/${propertyId}`);
+    }
+    
+    function addProperty() {
+        navigate("/add-property")
+}
 
   return (
     <>
       <div className="container mx-auto p-4 min-h-screen">
         {allProperties && allProperties.length > 0 ? (
-          <div className="max-h-full overflow-y-auto">
+          <div className="max-h-full overflow-y-auto  mb-12">
             <table className="min-w-full bg-white shadow-md rounded-lg">
               <thead>
                 <tr className="bg-gray-200">
@@ -62,7 +67,7 @@ export default function AdminOverview() {
                     <td className="py-2 px-4 text-right">
                       <button
                         onClick={() =>viewDetails(property.id)}
-                        className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                        className=" bg-orange-400 hover:bg-orange-300  text-white font-bold py-2 px-4 rounded"
                       >
                         View Details
                       </button>
@@ -75,7 +80,10 @@ export default function AdminOverview() {
         ) : (
           <p className="text-center text-gray-500">The list is empty</p>
         )}
-      </div>
+              <button
+                  onClick={() => addProperty()}
+                  className=" bg-orange-400 hover:bg-orange-300  text-white font-bold py-2 px-4 rounded">Add Property</button>
+          </div>
     </>
   );
 }
