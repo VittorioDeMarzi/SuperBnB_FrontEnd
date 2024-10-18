@@ -11,7 +11,7 @@ export default function Profile() {
       navigate("/home")
   };
   return (
-    <div>
+    <div className="h-screen p-12">
       <div>Hi, {auth.user}</div>
       <button
         onClick={handleLogOut}
