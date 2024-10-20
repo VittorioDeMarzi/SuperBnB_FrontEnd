@@ -1,6 +1,6 @@
 export default function ProprtyImages({ property }) {
     return (
-        <section>
+        <section className="mb-12">
             {property && property.picUrls && property.picUrls.length > 0 ? (
         <div>
           <h4 className="font-semibold">Images</h4>

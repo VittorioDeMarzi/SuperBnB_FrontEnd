@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function AddProperty() {
   const [errors, setErrors] = useState([]);
-    const navigate = useNavigate();
-    const role = useAuth();
+  const navigate = useNavigate();
+  const role = useAuth();
 
   const [property, setProperty] = useState({
     title: "",
@@ -105,7 +105,7 @@ export default function AddProperty() {
 
         const data = await response.json();
         console.log(data);
-        console.log(data.id)
+        console.log(data.id);
         navigate(`/property-controll/${data.id}`);
       } catch (error) {
         console.error("Error:", error.message);
@@ -115,13 +115,14 @@ export default function AddProperty() {
 
   return (
     <>
-      <div className="bg-background">
-        <section className="bg-background">
-          <form
-            className=" m-12 p-12 bg-slate-50 grid grid-flow-row gap-5"
-            onSubmit={submit}
-          >
-            <h2>Fill the form to add your propety</h2>
+      <section className="container mx-auto p-4 min-h-screen shadow-md">
+        
+        <form
+          className=" p-12 bg-slate-50 grid grid-flow-row gap-5"
+          onSubmit={submit}
+        >
+          <h2>Fill the form to add a property</h2>
+          <div className="grid grid-cols-2 gap-6">
             <div>
               <label className="form-control w-full max-w-xs">
                 <div className="label">
@@ -284,16 +285,16 @@ export default function AddProperty() {
                 />
               </label>
             </div>
+          </div>
 
-            <button
-              type="submit"
-              className=" bg-orange-400 hover:bg-orange-300  text-white font-bold py-2 px-4 rounded w-full"
-            >
-              Submit
-            </button>
-          </form>
-        </section>
-      </div>
+          <button
+            type="submit"
+            className=" bg-orange-400 hover:bg-orange-300  text-white font-bold py-2 px-4 rounded w-full"
+          >
+            Submit
+          </button>
+        </form>
+      </section>
     </>
   );
 }

@@ -4,7 +4,7 @@ import AddProperty from "./AddProperty";
 
 export default function AdminOverview() {
     const [allProperties, setAllProperties] = useState([]);
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
     useEffect(() => {
         loadPropertiesList();
