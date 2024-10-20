@@ -92,7 +92,7 @@ export default function LoginPage() {
               </Link>
             <button
               type="submit"
-              className="w-full bg-ocra hover:bg-background text-white font-bold py-2 rounded"
+              className="w-full bg-dark_violet hover:bg-violet text-white font-bold py-2 rounded"
             >
               Login
             </button>

@@ -6,10 +6,10 @@ module.exports = {
       colors: {
         ocra: "#ba8a3b",
         background: "#ffe8ca",
+        violet: "#5b43ba",
+        dark_violet: "#402f82",
       },
     },
   },
-  plugins: [
-    require('daisyui'),
-  ],
+  plugins: [require("daisyui")],
 };

@@ -19,9 +19,7 @@ export default function Navbar() {
           </Link>
           {role === "ADMIN" && (
             <>
-            <Link to="/add-property">
-              <li>Add Property</li>
-            </Link>
+      
             <Link to="/admin-overview">
               <li>Admin Overview</li>
             </Link>

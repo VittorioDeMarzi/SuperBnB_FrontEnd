@@ -67,7 +67,7 @@ export default function AdminOverview() {
                     <td className="py-2 px-4 text-right">
                       <button
                         onClick={() =>viewDetails(property.id)}
-                        className=" bg-orange-400 hover:bg-orange-300  text-white font-bold py-2 px-4 rounded"
+                        className=" bg-violet hover:bg-indigo-400 text-white font-bold py-2 px-4 rounded"
                       >
                         View Details
                       </button>
@@ -82,7 +82,7 @@ export default function AdminOverview() {
         )}
               <button
                   onClick={() => addProperty()}
-                  className=" bg-orange-400 hover:bg-orange-300  text-white font-bold py-2 px-4 rounded">Add Property</button>
+                  className=" bg-violet hover:bg-indigo-400  text-white font-bold py-2 px-4 rounded">Add Property</button>
           </div>
     </>
   );
