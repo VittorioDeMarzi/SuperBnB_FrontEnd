@@ -38,14 +38,17 @@ export default function PublicProperties() {
       {loading && !properties && <p>...loading properties</p>}
       <div className="grid grid-flow-row">
         {properties && (
-                  <>
-                      <div className="divider"><p className=" text-dark_violet underline">Browse properties</p></div>
-            <article className="carousel carousel-center space-x-6 p-4 mx-9">
+          <>
+            <div className="divider">
+              <p className=" text-dark_violet underline">Browse properties</p>
+            </div>
+                      <article
+                          className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 m-auto p-12 gap-12 items-center">
               {properties.map((property, index) => (
                 <PublicPropertyCard property={property} />
               ))}
-                      </article>
-                      <div className="divider"></div>
+            </article>
+            <div className="divider"></div>
           </>
         )}
       </div>

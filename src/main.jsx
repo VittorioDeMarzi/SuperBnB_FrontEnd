@@ -12,6 +12,7 @@ import AddProperty from "./pages/AddProperty";
 import ProtectorElement from "./pages/ProtectorUserElement.jsx";
 import PropertyControllPage from "./pages/PropertyControllPage.jsx";
 import AdminOverview from "./pages/AdminOverview.jsx";
+import PropertyView from "./pages/PropertyView.jsx";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <Signup />,
+      },
+      {
+        path: "/property-view/:id",
+        element: <PropertyView />,
       },
       {
         path: "/profile",
