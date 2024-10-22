@@ -12,7 +12,7 @@ export default function Navbar() {
           <h1 className=" font-bold ext-slate-700 text-2xl">SuperBnB.</h1>
         </Link>
         <ul className="flex justify-center space-x-4 items-center">
-          <li>About Us</li>
+          <Link to="/aboutus">About Us</Link>
           <li>Contacts</li>
           <Link to="/Profile">
             <li>Profile</li>

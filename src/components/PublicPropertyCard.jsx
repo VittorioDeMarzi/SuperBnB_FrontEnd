@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function PublicPropertyCard({ property }) {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -27,8 +27,7 @@ export default function PublicPropertyCard({ property }) {
   return (
     <>
       {property && (
-              <div
-                  onClick={() => propertyView(property.id)}
+              <Link to={`/property-view/${property.id}`}
                   className="card w-72 hover:shadow-2xl">
           <figure>
             <div className="relative w-full max-w-md mx-auto">
@@ -41,7 +40,10 @@ export default function PublicPropertyCard({ property }) {
 
               {/* Previous button */}
               <button
-                onClick={prevImage}
+                onClick={(e) => {
+                  e.preventDefault();
+                  prevImage();
+                }}
                 className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-background bg-opacity-55 text-white p-2 rounded-full"
               >
                 &#8592;
@@ -49,7 +51,10 @@ export default function PublicPropertyCard({ property }) {
 
               {/* Next button */}
               <button
-                onClick={nextImage}
+                onClick={(e) => {
+                  e.preventDefault();
+                  nextImage();
+                }}
                 className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-background bg-opacity-55 text-white p-2 rounded-full"
               >
                 &#8594;
@@ -80,7 +85,7 @@ export default function PublicPropertyCard({ property }) {
               </p>
             </div>
           </div>
-        </div>
+        </Link>
       )}
     </>
   );
