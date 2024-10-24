@@ -14,6 +14,7 @@ import PropertyControllPage from "./pages/PropertyControllPage.jsx";
 import AdminOverview from "./pages/AdminOverview.jsx";
 import PropertyView from "./pages/PropertyView.jsx";
 import AboutUs from "./pages/AboutUs.jsx";
+import 'leaflet/dist/leaflet.css';
 
 const router = createBrowserRouter([
   {

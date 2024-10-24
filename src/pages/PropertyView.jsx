@@ -1,11 +1,13 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { ImageList, ImageListItem } from "@mui/material";
+import Map from "../components/Map";
+import PropertyImagesUser from "../components/PropertyImagesUser";
 
 export default function PropertyView() {
   const { id } = useParams();
   const [property, setProperty] = useState(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const [address, setAddress] = useState(null);
 
   useEffect(() => {
     fetchDataApartment();
@@ -23,82 +25,109 @@ export default function PropertyView() {
       const data = await response.json();
       console.log(data);
       setProperty(data);
+      const newAddress =
+        
+        data.street +
+        " " +
+        data.houseNumber +
+        ", " +
+        data.city +
+        ", " +
+        data.zipCode +
+        ", " +
+        data.country;
+      console.log(newAddress);
+
+      setAddress(newAddress);
+      console.log("Address:", address);
     } catch (error) {
       console.error("Error fetching property:", error);
     }
   }
 
-  // Function to go to the next image
-  const nextImage = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === property.picUrls.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  // Function to go to the previous image
-  const prevImage = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? property.picUrls.length - 1 : prevIndex - 1
-    );
-  };
+  useEffect(() => {
+    if (address) {
+      console.log("Address:", address);
+    }
+  }, [address]);
 
   return (
     <>
       <div className="mt-5">
-          {property && property.picUrls && (
-            <figure className="p-12">
-              <div className="relative w-full max-w-3xl mx-auto">
-                {/* Current image */}
-                <img
-                  src={property.picUrls[currentIndex]}
-                  alt={`Image ${currentIndex}`}
-                  className="w-full max-h-svh object-cover rounded-lg"
-                />
-                {/* Previous button */}
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    prevImage();
-                  }}
-                  className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-ocra bg-opacity-85 text-white p-2 rounded-full"
-                >
-                  &#8592;
-                </button>
-                {/* Next button */}
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    nextImage();
-                  }}
-                  className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-ocra bg-opacity-85 text-white p-2 rounded-full"
-                >
-                  &#8594;
-                </button>
-                {/* Image indicators */}
-                <div className="flex justify-center mt-4">
-                  {property.picUrls.map((_, index) => (
-                    <div
-                      key={index}
-                      className={`w-3 h-3 mx-1 rounded-full ${
-                        currentIndex === index ? "bg-gray-800" : "bg-gray-400"
-                      }`}
-                    ></div>
-                  ))}
-                </div>
+        {property && property.picUrls && (
+          <>
+            <div className="pt-12">
+              <div className=" bg-ocra bg-opacity-90 p-4 text-white">
+                <h1 className="text-4xl font-bold">{property.title}</h1>
+                <p className="text-lg">
+                  {property.street} {property.houseNumber}, {property.zipCode}{" "}
+                  {property.city}, {property.country}
+                </p>
               </div>
-            </figure>
-          )}
-          <section className="container mx-auto p-4 min-h-screen shadow-md">
-            <h1>{property?.title}</h1>
-            <p>{property?.description}</p>
-            <p>
-              {property?.street} {property?.houseNumber}, {property?.zipCode}{" "}
-              {property?.city}, {property?.country}
-            </p>
-            <p>Guests: {property?.maxNumGuests}</p>
-            <p>Price per night: {property?.minPricePerNight}€</p>
-          </section>
+            </div>
+            <PropertyImagesUser picUrls={property.picUrls} />
+          </>
+        )}
       </div>
+
+      {property ? (
+        <div className="max-w-5xl bg-white rounded-xl shadow-lg overflow-hidden p-6 mx-auto">
+          <div className="p-6">
+            <div className="flex justify-between items-center mb-4">
+              <span className="text-lg font-semibold text-gray-800">
+                Guests: 4
+              </span>
+              <span className="text-lg font-semibold text-gray-800">
+                Price per night: 75.5€
+              </span>
+            </div>
+
+            <p className="text-gray-700 text-lg leading-relaxed mb-6">
+              This spacious and bright apartment is ideal for families or
+              groups. Located in the heart of the city, it offers easy access to
+              popular landmarks, restaurants, and public transport. The
+              apartment is fully furnished with modern amenities, including a
+              fully equipped kitchen, high-speed Wi-Fi, and a cozy living room
+              perfect for relaxing after a day of exploring.
+            </p>
+
+            <h2 className="text-2xl font-bold text-gray-800 mb-2">Amenities</h2>
+            <ul className="grid grid-cols-2 gap-4 mb-6">
+              <li className="flex items-center space-x-2">
+                <span>✔️ Free Wi-Fi</span>
+              </li>
+              <li className="flex items-center space-x-2">
+                <span>✔️ Air Conditioning</span>
+              </li>
+              <li className="flex items-center space-x-2">
+                <span>✔️ Kitchen</span>
+              </li>
+              <li className="flex items-center space-x-2">
+                <span>✔️ Washing Machine</span>
+              </li>
+              <li className="flex items-center space-x-2">
+                <span>✔️ TV</span>
+              </li>
+              <li className="flex items-center space-x-2">
+                <span>✔️ Coffee Maker</span>
+              </li>
+            </ul>
+
+            <h2 className="text-2xl font-bold text-gray-800 mb-2">Location</h2>
+            <p className="text-gray-700 text-lg mb-4">
+              {address}
+            </p>
+
+            {property && address && <Map address={address} />}
+
+            <button className="w-full bg-ocra text-white py-3 text-lg font-semibold rounded-lg hover:bg-blue-700 transition duration-300">
+              Book Now for 75.5€ per night
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div>Loading...</div>
+      )}
     </>
   );
 }

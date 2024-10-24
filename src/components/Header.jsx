@@ -1,5 +1,3 @@
-import Navbar from "./Navbar";
-
 export default function Header() {
   return (
     <>
@@ -14,11 +12,10 @@ export default function Header() {
         />
       </div>
 
-      <header className="relative h-[150px] bg-cover bg-center">
-        <h2 className="header-title text-6xl text-center relative text-ocra">
+        <h2 className="text-6xl text-center  text-ocra my-12">
           Welcome To SuperBnB
         </h2>
-      </header>
+  
     </>
   );
 }
