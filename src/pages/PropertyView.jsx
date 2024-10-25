@@ -1,12 +1,13 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Map from "../components/Map";
 import PropertyImagesUser from "../components/PropertyImagesUser";
+import CheckAvailability from "../components/CheckAvailability";
 
 export default function PropertyView() {
   const { id } = useParams();
   const [property, setProperty] = useState(null);
-
+  const navigate = useNavigate();
   const [address, setAddress] = useState(null);
 
   useEffect(() => {
@@ -26,7 +27,6 @@ export default function PropertyView() {
       console.log(data);
       setProperty(data);
       const newAddress =
-        
         data.street +
         " " +
         data.houseNumber +
@@ -51,6 +51,10 @@ export default function PropertyView() {
     }
   }, [address]);
 
+  function goToBooking() {
+    navigate(`/booking/${id}`)
+  }
+
   return (
     <>
       <div className="mt-5">
@@ -70,25 +74,20 @@ export default function PropertyView() {
         )}
       </div>
 
-      {property ? (
+      {property && address ? (
         <div className="max-w-5xl bg-white rounded-xl shadow-lg overflow-hidden p-6 mx-auto">
           <div className="p-6">
             <div className="flex justify-between items-center mb-4">
               <span className="text-lg font-semibold text-gray-800">
-                Guests: 4
+                Guests: {property.maxNumGuests}
               </span>
               <span className="text-lg font-semibold text-gray-800">
-                Price per night: 75.5€
+                Price per night from: {property.minPricePerNight}€
               </span>
             </div>
 
             <p className="text-gray-700 text-lg leading-relaxed mb-6">
-              This spacious and bright apartment is ideal for families or
-              groups. Located in the heart of the city, it offers easy access to
-              popular landmarks, restaurants, and public transport. The
-              apartment is fully furnished with modern amenities, including a
-              fully equipped kitchen, high-speed Wi-Fi, and a cozy living room
-              perfect for relaxing after a day of exploring.
+              {property.description}
             </p>
 
             <h2 className="text-2xl font-bold text-gray-800 mb-2">Amenities</h2>
@@ -114,14 +113,14 @@ export default function PropertyView() {
             </ul>
 
             <h2 className="text-2xl font-bold text-gray-800 mb-2">Location</h2>
-            <p className="text-gray-700 text-lg mb-4">
-              {address}
-            </p>
+            <p className="text-gray-700 text-lg mb-4">{address}</p>
 
-            {property && address && <Map address={address} />}
-
-            <button className="w-full bg-ocra text-white py-3 text-lg font-semibold rounded-lg hover:bg-blue-700 transition duration-300">
-              Book Now for 75.5€ per night
+            <Map address={address} />
+            <CheckAvailability propertyId = {id}/>
+            <button
+              onClick={goToBooking}
+              className="w-full bg-ocra text-white py-3 text-lg font-semibold rounded-lg hover:bg-opacity-55 transition duration-300">
+              Book Now for {property.minPricePerNight}€ per night
             </button>
           </div>
         </div>

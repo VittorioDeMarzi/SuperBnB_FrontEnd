@@ -115,10 +115,10 @@ export default function AddProperty() {
 
   return (
     <>
-      <section className="container mx-auto p-4 min-h-screen shadow-md">
+      <section className="container mx-auto p-12 min-h-screen">
         
         <form
-          className=" p-12 bg-slate-50 grid grid-flow-row gap-5"
+          className=" p-12 bg-slate-50 grid grid-flow-row gap-5 shadow-md"
           onSubmit={submit}
         >
           <h2>Fill the form to add a property</h2>

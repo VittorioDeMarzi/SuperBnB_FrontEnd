@@ -15,6 +15,7 @@ import AdminOverview from "./pages/AdminOverview.jsx";
 import PropertyView from "./pages/PropertyView.jsx";
 import AboutUs from "./pages/AboutUs.jsx";
 import 'leaflet/dist/leaflet.css';
+import BookingPage from "./pages/BookingPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "/admin-overview",
         element: <ProtectorElement element={<AdminOverview/>} />,
+      },
+      {
+        path: "/booking/:id",
+        element: <ProtectorElement element={<BookingPage/>} />,
       },
 
     ],

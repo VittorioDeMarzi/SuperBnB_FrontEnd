@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import AddProperty from "./AddProperty";
 
 export default function AdminOverview() {
     const [allProperties, setAllProperties] = useState([]);
