@@ -3,29 +3,9 @@ import { useLocation } from "react-router-dom";
 
 export default function BookingConfirmation() {
   const location = useLocation();
-  const BookingConfirmationData = location.state || {};
+  const bookingConfirmationData = location.state || {};
 
-  const [loading, setLoading] = useState(true);
-  const [bookingData, setBookingData] = useState(null);
-
-  useEffect(() => {
-    // Simula un ritardo nel caricamento per dare un feedback visivo
-    const timer = setTimeout(() => {
-      if (BookingConfirmationData) {
-        setBookingData(BookingConfirmationData);
-      }
-      setLoading(false);
-    }, 1000);
-
-    // Pulisci il timer se il componente viene smontato
-    return () => clearTimeout(timer);
-  }, [BookingConfirmationData]);
-
-  if (loading) {
-    return <h1 className="text-center">Loading...</h1>;
-  }
-
-  if (!bookingData) {
+  if (!bookingConfirmationData) {
     return <h1 className="text-red-500 text-center">No booking data available.</h1>;
   }
 
@@ -40,7 +20,7 @@ export default function BookingConfirmation() {
     totGuests,
     totalNights,
     totalPrice,
-  } = bookingData;
+  } = bookingConfirmationData;
 
   return (
     <div className="max-w-4xl mx-auto my-8 p-12 border border-gray-300 rounded-lg shadow-lg bg-slate-100">
