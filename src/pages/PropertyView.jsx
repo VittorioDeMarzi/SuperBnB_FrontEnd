@@ -7,7 +7,7 @@ import CheckAvailability from "../components/CheckAvailability";
 export default function PropertyView() {
   const { id } = useParams();
   const [property, setProperty] = useState(null);
-  const navigate = useNavigate();
+
   const [address, setAddress] = useState(null);
 
   useEffect(() => {
@@ -51,9 +51,7 @@ export default function PropertyView() {
     }
   }, [address]);
 
-  function goToBooking() {
-    navigate(`/booking/${id}`)
-  }
+ 
 
   return (
     <>
@@ -117,11 +115,7 @@ export default function PropertyView() {
 
             <Map address={address} />
             <CheckAvailability propertyId = {id}/>
-            <button
-              onClick={goToBooking}
-              className="w-full bg-ocra text-white py-3 text-lg font-semibold rounded-lg hover:bg-opacity-55 transition duration-300">
-              Book Now for {property.minPricePerNight}€ per night
-            </button>
+            
           </div>
         </div>
       ) : (

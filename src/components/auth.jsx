@@ -32,11 +32,6 @@ const AuthProvider = ({ children }) => {
     const storedUser = localStorage.getItem("user");
     const storedRole = localStorage.getItem("role");
 
- /*    if (storedToken) {
-      setToken(storedToken);
-      setRole(storedRole);
-      setUser(storedUser);
-    } */
     if (storedToken) {
     
       fetch(import.meta.env.VITE_BACKEND + "/api/v1/auth/user", {

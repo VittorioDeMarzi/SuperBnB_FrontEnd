@@ -42,8 +42,7 @@ export default function PublicProperties() {
             <div className="divider">
               <p className=" text-dark_violet underline">Browse properties</p>
             </div>
-                      <article
-                          className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 m-auto p-12 gap-12 items-center">
+            <article className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 m-auto p-12 gap-12">
               {properties.map((property, index) => (
                 <PublicPropertyCard property={property} />
               ))}

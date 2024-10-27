@@ -16,6 +16,7 @@ import PropertyView from "./pages/PropertyView.jsx";
 import AboutUs from "./pages/AboutUs.jsx";
 import 'leaflet/dist/leaflet.css';
 import BookingPage from "./pages/BookingPage.jsx";
+import BookingConfirmation from "./pages/BookingConfirmation.jsx";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: "/booking/:id",
         element: <ProtectorElement element={<BookingPage/>} />,
+      },
+      {
+        path: "/booking-confirmation",
+        element: <ProtectorElement element={<BookingConfirmation/>} />,
       },
 
     ],
