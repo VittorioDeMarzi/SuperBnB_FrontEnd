@@ -1,3 +1,5 @@
+import logo from "../assets/images/Logo.png"
+
 export default function Footer() {
   return (
     <>
@@ -25,7 +27,7 @@ export default function Footer() {
       </footer>
       <footer className="footer bg-slate-950 text-zinc-300 px-10 py-4">
         <aside className="grid-flow-col items-center">
-          <img src="src/assets/images/Logo.png" alt="logo" className="w-24"/>
+          <img src={logo} alt="logo" className="w-24"/>
           <p>
             ACME Industries Ltd.
             <br />

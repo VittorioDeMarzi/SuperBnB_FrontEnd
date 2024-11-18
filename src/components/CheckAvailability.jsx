@@ -28,7 +28,7 @@ export default function CheckAvailability({ propertyId }) {
       const response = await fetch(
         `${
           import.meta.env.VITE_BACKEND
-        }/api/v1/superbeb/property/check-availability/${propertyId}`,
+        }/api/v1/superbeb/property/public/check-availability`,
         {
           method: "POST",
           headers: {
