@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import AuthProvider from "./components/auth";
+import AuthProvider from "./components/auth.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -14,7 +14,7 @@ import PropertyControllPage from "./pages/PropertyControllPage.jsx";
 import AdminOverview from "./pages/AdminOverview.jsx";
 import PropertyView from "./pages/PropertyView.jsx";
 import AboutUs from "./pages/AboutUs.jsx";
-import 'leaflet/dist/leaflet.css';
+import "leaflet/dist/leaflet.css";
 import BookingPage from "./pages/BookingPage.jsx";
 import BookingConfirmation from "./pages/BookingConfirmation.jsx";
 
@@ -24,6 +24,10 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
+        path: "/",
+        element: <HomePage />,
+      },
+      {
         path: "/home",
         element: <HomePage />,
       },
@@ -31,7 +35,7 @@ const router = createBrowserRouter([
         path: "/login",
         element: <LoginPage />,
       },
-      
+
       {
         path: "/signup",
         element: <Signup />,
@@ -46,29 +50,28 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <ProtectorElement element={<Profile />}/>,
+        element: <ProtectorElement element={<Profile />} />,
       },
       {
         path: "/add-property",
-        element: <ProtectorElement element={<AddProperty/>} />,
+        element: <ProtectorElement element={<AddProperty />} />,
       },
       {
         path: "/property-controll/:id",
-        element: <ProtectorElement element={<PropertyControllPage/>} />,
+        element: <ProtectorElement element={<PropertyControllPage />} />,
       },
       {
         path: "/admin-overview",
-        element: <ProtectorElement element={<AdminOverview/>} />,
+        element: <ProtectorElement element={<AdminOverview />} />,
       },
       {
         path: "/booking/:id",
-        element: <ProtectorElement element={<BookingPage/>} />,
+        element: <ProtectorElement element={<BookingPage />} />,
       },
       {
         path: "/booking-confirmation",
-        element: <ProtectorElement element={<BookingConfirmation/>} />,
+        element: <ProtectorElement element={<BookingConfirmation />} />,
       },
-
     ],
   },
   {
