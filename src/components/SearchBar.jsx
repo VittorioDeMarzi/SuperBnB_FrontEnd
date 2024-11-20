@@ -1,19 +1,11 @@
 import { useState, useEffect } from "react";
 import Select from "react-select";
 import searchLogo from "/src/assets/images/search-square-svgrepo-com.svg";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export default function SearchBar() {
+export default function SearchBar({ filters, setFilters }) {
+  const navigate = useNavigate();
   const [cities, setCities] = useState([]);
-
-  const [filters, setFilters] = useState({
-    city: "",
-    checkInDate: "",
-    checkOutDate: "",
-    minPrice: null,
-    numGuests: 1,
-    minRooms: 1,
-  });
 
   async function loadCities() {
     try {
@@ -39,7 +31,7 @@ export default function SearchBar() {
 
   function handleSearch(e) {
     e.preventDefault();
-    <Navigate to={"/dashboard"} state={filters} />;
+    navigate("/searchpage", { state: { filters } });
   }
 
   return (
@@ -66,7 +58,31 @@ export default function SearchBar() {
               placeholder="Select a city"
               isSearchable
               isClearable
-              className="w-full mt-1 px-3 py-2 focus:outline-none bg-white bg-opacity-0"
+              className="w-full mt-1 px-3 py-2"
+              styles={{
+                control: (base) => ({
+                  ...base,
+                  backgroundColor: "transparent",
+                  border: "none",
+                  boxShadow: "none",
+                }),
+
+                placeholder: (base) => ({
+                  ...base,
+                  color: "inherit",
+                }),
+
+                option: (base) => ({
+                  ...base,
+                  backgroundColor: "transparent",
+                  color: "inherit",
+                  cursor: "pointer",
+                  "&:hover": {
+                    backgroundColor: "#f0f0f0",
+                    color: "#333",
+                  },
+                }),
+              }}
             />
           </div>
 

@@ -56,7 +56,7 @@ export default function PublicProperties() {
                 <PublicPropertyCard property={property} />
               ))}
             </article>
-            <div className="divider mb-12">
+            <div className="divider my-12">
               <button
                 onClick={() => loadMoreProperties()}
                 className=" text-dark_violet rounded-full underline font-bold text-xl px-8 py-2 hover:text-violet hover:shadow-lg"

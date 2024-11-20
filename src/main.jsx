@@ -17,6 +17,7 @@ import AboutUs from "./pages/AboutUs.jsx";
 import "leaflet/dist/leaflet.css";
 import BookingPage from "./pages/BookingPage.jsx";
 import BookingConfirmation from "./pages/BookingConfirmation.jsx";
+import SearchLandingPage from "./pages/SearchLandingPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/home",
         element: <HomePage />,
+      },
+      {
+        path: "/searchpage",
+        element: <SearchLandingPage />,
       },
       {
         path: "/login",
