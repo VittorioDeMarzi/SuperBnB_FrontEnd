@@ -9,15 +9,18 @@ export default function HomePage() {
     checkInDate: "",
     checkOutDate: "",
     minPrice: null,
+    maxPrice: null,
     numGuests: 2,
     minRooms: 1,
   });
 
+  const [loadProperties, setLoadProperties] = useState(false)
+
   return (
     <>
       <Header />
-      
-      <SearchBar filters={filters} setFilters={setFilters} />
+
+      <SearchBar filters={filters} setFilters={setFilters} setLoadProperties={setLoadProperties} />
       <PublicProperties/>
     </>
   );
