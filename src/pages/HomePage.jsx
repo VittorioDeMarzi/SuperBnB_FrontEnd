@@ -1,7 +1,7 @@
 import Header from "../components/Header";
 import PublicProperties from "../components/PublicProperties";
 import SearchBar from "../components/SearchBar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function HomePage() {
   const [filters, setFilters] = useState({
@@ -14,6 +14,10 @@ export default function HomePage() {
     minRooms: 1,
   });
 
+  useEffect(() => {
+    sessionStorage.setItem('filters', {filters})
+  }, [filters])
+
   const [loadProperties, setLoadProperties] = useState(false)
 
   return (
@@ -21,7 +25,7 @@ export default function HomePage() {
       <Header />
 
       <SearchBar filters={filters} setFilters={setFilters} setLoadProperties={setLoadProperties} />
-      <PublicProperties/>
+      <PublicProperties />
     </>
   );
 }

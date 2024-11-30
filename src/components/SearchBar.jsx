@@ -2,8 +2,11 @@ import { useState, useEffect } from "react";
 import Select from "react-select";
 import searchLogo from "/src/assets/images/search-square-svgrepo-com.svg";
 import { useNavigate } from "react-router-dom";
+import filtersLogo from "../assets/images/filters.png";
+import FilterDrawer from "./FilterDrawer";
 
 export default function SearchBar({ filters, setFilters, setLoadProperties }) {
+  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const navigate = useNavigate();
   const [cities, setCities] = useState([]);
 
@@ -36,7 +39,12 @@ export default function SearchBar({ filters, setFilters, setLoadProperties }) {
   function handleSearch(e) {
     e.preventDefault();
     setLoadProperties((old) => !old);
+    sessionStorage.setItem("filters", JSON.stringify(filters))
     navigate("/searchpage", { state: { filters } });
+  }
+
+  function openFilters() {
+    setIsFiltersOpen((old) => !old);
   }
 
   return (
@@ -45,7 +53,7 @@ export default function SearchBar({ filters, setFilters, setLoadProperties }) {
         <>
           <div className="w-full max-w-6xl mx-auto p-4">
             <form
-              className="bg-white bg-opacity-50 py-3 rounded-full shadow-lg px-12"
+              className="bg-white bg-opacity-50 py-3 rounded-full shadow-lg px-12 mb-5"
               onSubmit={handleSearch}
             >
               <div className="flex space-x-4">
@@ -169,8 +177,17 @@ export default function SearchBar({ filters, setFilters, setLoadProperties }) {
                     alt="search"
                   />
                 </button>
+                <button className="self-center">
+                  <img
+                    className="w-12 text-orange-500"
+                    src={filtersLogo}
+                    alt="filters"
+                    onClick={(e) => openFilters()}
+                  />
+                </button>
               </div>
             </form>
+            {isFiltersOpen && <FilterDrawer filters={filters} setFilters={setFilters} />}
           </div>
         </>
       )}
