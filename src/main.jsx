@@ -18,6 +18,7 @@ import "leaflet/dist/leaflet.css";
 import BookingPage from "./pages/BookingPage.jsx";
 import BookingConfirmation from "./pages/BookingConfirmation.jsx";
 import SearchLandingPage from "./pages/SearchLandingPage.jsx";
+import UserBookings from "./pages/UserBookings.jsx";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <ProtectorElement element={<Profile />} />,
+      },
+      {
+        path: "/booking-history",
+        element: <ProtectorElement element={<UserBookings />} />,
       },
       {
         path: "/add-property",

@@ -223,7 +223,7 @@ export default function ProfileSection() {
           </div>
           <button
             onClick={() => setEditing(true)}
-            className="bg-purple-800 text-white p-2 rounded w-full mt-4"
+            className="bg-purple-800 text-white px-12 py-2 rounded text-center mt-4"
           >
             Edit
           </button>

@@ -27,6 +27,7 @@ export default function PublicProperties() {
       }
       const data = await response.json();
       setProperties(data);
+      console.log(data);
     } catch (error) {
       console.error("Error loading properties: ", error.message);
     } finally {
@@ -47,9 +48,7 @@ export default function PublicProperties() {
             <div className="divider"></div>
             <article className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 m-auto px-12 gap-12">
               {properties.map((property, index) => (
-                <PublicPropertyCard
-                  key={index}
-                  property={property}/>
+                <PublicPropertyCard key={index} property={property} />
               ))}
             </article>
             <div className="divider my-12">
