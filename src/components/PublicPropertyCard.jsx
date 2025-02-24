@@ -2,33 +2,34 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function PublicPropertyCard({ property }) {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const navigate = useNavigate();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const navigate = useNavigate();
 
   // Function to go to the next image
-    const nextImage = () => {
-        setCurrentIndex((prevIndex) =>
-            prevIndex === property.picUrls.length - 1 ? 0 : prevIndex + 1
-        );
-    };
+  const nextImage = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === property.picUrls.length - 1 ? 0 : prevIndex + 1
+    );
+  };
 
   // Function to go to the previous image
-    const prevImage = () => {
-        setCurrentIndex((prevIndex) =>
-            prevIndex === 0 ? property.picUrls.length - 1 : prevIndex - 1
-        );
-    };
-    
-    function propertyView(propertyId) {
-        navigate(`/property-view/${propertyId}`)
-    }
+  const prevImage = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? property.picUrls.length - 1 : prevIndex - 1
+    );
+  };
 
+  function propertyView(propertyId) {
+    navigate(`/property-view/${propertyId}`);
+  }
 
   return (
     <>
       {property && (
-              <Link to={`/property-view/${property.id}`}
-                  className="card w-72 hover:shadow-2xl">
+        <Link
+          to={`/property-view/${property.id}`}
+          className="card w-72 hover:shadow-2xl"
+        >
           <figure>
             <div className="relative w-full max-w-md mx-auto">
               {/* Current image */}

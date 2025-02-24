@@ -24,7 +24,7 @@ export default function PropertyView() {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
-      console.log(data);
+
       setProperty(data);
       const newAddress =
         data.street +
@@ -36,22 +36,12 @@ export default function PropertyView() {
         data.zipCode +
         ", " +
         data.country;
-      console.log(newAddress);
 
       setAddress(newAddress);
-      console.log("Address:", address);
     } catch (error) {
       console.error("Error fetching property:", error);
     }
   }
-
-  useEffect(() => {
-    if (address) {
-      console.log("Address:", address);
-    }
-  }, [address]);
-
- 
 
   return (
     <>
@@ -73,7 +63,7 @@ export default function PropertyView() {
       </div>
 
       {property && address ? (
-        <div className="max-w-5xl bg-white rounded-xl shadow-lg overflow-hidden p-6 mx-auto">
+        <div className="max-w-5xl bg-white rounded-xl shadow-lg overflow-hidden p-6 mx-auto mb-12">
           <div className="p-6">
             <div className="flex justify-between items-center mb-4">
               <span className="text-lg font-semibold text-gray-800">

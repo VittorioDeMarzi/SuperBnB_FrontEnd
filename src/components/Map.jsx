@@ -31,7 +31,7 @@ const Map = ({ address }) => {
 
   return (
     <>
-      {position && (
+      {position ? (
         <MapContainer
           center={position}
           zoom={13}
@@ -46,6 +46,9 @@ const Map = ({ address }) => {
             <Popup>{address}</Popup>
           </Marker>
         </MapContainer>
+      ) :
+      (
+      <p className="my-12 underline">Map not available at the moment.</p>
       )}
     </>
   );

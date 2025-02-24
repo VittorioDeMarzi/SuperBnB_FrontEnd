@@ -51,7 +51,9 @@ export default function AdminOverview() {
                   <th className="text-left py-2 px-4">City</th>
                   <th className="text-left py-2 px-4">Street</th>
                   <th className="text-left py-2 px-4">House Number</th>
-                  <th className="text-right py-2 px-4">Actions</th>
+                  <th className="text-left py-2 px-4">Visibility</th>
+                  <th className="text-right py-2 px-4"></th>
+
                 </tr>
               </thead>
               <tbody>
@@ -63,6 +65,7 @@ export default function AdminOverview() {
                     <td className="py-2 px-4">{property.city}</td>
                     <td className="py-2 px-4">{property.street}</td>
                     <td className="py-2 px-4">{property.houseNumber}</td>
+                    <td className="py-2 px-4">{property.isPublic ? (<p>Public</p>) : (<p>Private</p>)}</td>
                     <td className="py-2 px-4 text-right">
                       <button
                         onClick={() =>viewDetails(property.id)}
