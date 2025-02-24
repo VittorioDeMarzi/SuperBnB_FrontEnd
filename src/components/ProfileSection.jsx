@@ -4,12 +4,15 @@ import { useAuth } from "../components/auth";
 export default function ProfileSection() {
   const auth = useAuth();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [profile, setProfile] = useState([]);
   const [address, setAddress] = useState([]);
   const [editing, setEditing] = useState(false);
 
   async function getProfile() {
     setLoading(true);
+    setError(null);
+
     try {
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND}/api/v1/user`,
@@ -25,11 +28,12 @@ export default function ProfileSection() {
       }
       const data = await response.json();
 
-      setProfile(data.profileDto);
-      setAddress(data.addressDto);
-      console.log(data);
+      setProfile(data.profileDto || {});
+      setAddress(data.addressDto || {});
+      // console.log(data);
     } catch (error) {
-      console.error("Error fetching property:", error);
+      console.error("Error fetching data:", error);
+      setError("Failed to fetch profile data. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -37,6 +41,7 @@ export default function ProfileSection() {
 
   async function saveProfile(event) {
     event.preventDefault();
+    setError(null);
     console.log(
       JSON.stringify({
         profileDto: profile,
@@ -67,6 +72,7 @@ export default function ProfileSection() {
       setEditing(false);
     } catch (error) {
       console.error("Error saving data:", error);
+      setError("Failed to update profile. Please try again.");
       alert("Failed to update profile");
     } finally {
       setEditing(false);
@@ -79,6 +85,10 @@ export default function ProfileSection() {
 
   if (loading) {
     return <p className="text-center">Loading...</p>;
+  }
+  
+  if (error) {
+    return <p className="text-center text-red-500">{error}</p>;
   }
 
   return (
