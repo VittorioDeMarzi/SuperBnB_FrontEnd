@@ -41,8 +41,7 @@ export default function PublicPropertiesList({ filters, loadProperties }) {
       const data = await response.json();
       setProperties(data.content);
       setLastPage(data.last);
-      console.log("last page",lastPage)
-      console.log(data);
+      // console.log("last page",lastPage)
     } catch (error) {
       console.error("Error loading properties: ", error.message);
     } finally {

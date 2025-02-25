@@ -1,5 +1,4 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import BookingRequestInfo from "../components/BookingRequestInfo";
 import Payment from "../components/Payment";
 import ProfileSection from "../components/ProfileSection";
@@ -29,9 +28,8 @@ export default function BookingPage() {
       }
 
       const data = await response.json();
-      console.log(data);
       if (data) {
-        console.log(data);
+        // console.log(data);
         navigate("/user/booking-confirmation", { state: data });
       }
     } catch (error) {

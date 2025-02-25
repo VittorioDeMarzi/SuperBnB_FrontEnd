@@ -14,10 +14,10 @@ const Map = ({ address }) => {
         );
         const data = await response.json();
         if (data && data.length > 0) {
-          console.log(data);
-          const { lat, lon } = data[0];
+          // console.log(data);
+          // const { lat, lon } = data[0];
           setPosition([lat, lon]);
-          console.log(position);
+          // console.log(position);
         } else console.log("no map")
       } catch (error) {
         console.error(error);

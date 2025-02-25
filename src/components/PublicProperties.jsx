@@ -27,7 +27,6 @@ export default function PublicProperties() {
       }
       const data = await response.json();
       setProperties(data);
-      console.log(data);
     } catch (error) {
       console.error("Error loading properties: ", error.message);
     } finally {

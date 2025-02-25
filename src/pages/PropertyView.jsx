@@ -5,9 +5,11 @@ import PropertyImagesUser from "../components/PropertyImagesUser";
 import CheckAvailability from "../components/CheckAvailability";
 
 export default function PropertyView() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [property, setProperty] = useState(null);
-
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(null);
   const [address, setAddress] = useState(null);
 
   useEffect(() => {
@@ -15,12 +17,23 @@ export default function PropertyView() {
   }, []);
 
   async function fetchDataApartment() {
+    setError(null);
+    setLoading(true);
     try {
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND}/api/v1/superbeb/property/${id}`
       );
 
+      if (response.status === 403) {
+        setError(
+          "You are not allowed to access this property. Redidection to Home"
+        );
+        navigate("/home");
+        throw new Error("Property is private");
+      }
+
       if (!response.ok) {
+        setError("Failed to fetch property");
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
@@ -40,7 +53,17 @@ export default function PropertyView() {
       setAddress(newAddress);
     } catch (error) {
       console.error("Error fetching property:", error);
+    } finally {
+      setLoading(false);
     }
+  }
+
+  if (loading) {
+    return <p className="text-center">Loading...</p>;
+  }
+
+  if (error) {
+    return <p className="text-center text-red-500">{error}</p>;
   }
 
   return (
@@ -104,8 +127,7 @@ export default function PropertyView() {
             <p className="text-gray-700 text-lg mb-4">{address}</p>
 
             <Map address={address} />
-            <CheckAvailability propertyId = {id}/>
-            
+            <CheckAvailability propertyId={id} />
           </div>
         </div>
       ) : (

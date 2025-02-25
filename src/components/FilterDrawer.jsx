@@ -1,7 +1,3 @@
-import { useState } from "react";
-import Select from "react-select";
-import searchLogo from "/src/assets/images/search-square-svgrepo-com.svg";
-
 export default function FilterDrawer({ filters, setFilters }) {
   return (
     <>
