@@ -3,7 +3,7 @@ import { createContext, useState, useContext, useEffect } from "react";
 const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(sessionStorage.getItem("token") || "");
   const [user, setUser] = useState(null);
   const [role, setRole] = useState(null);
 
@@ -14,8 +14,6 @@ const AuthProvider = ({ children }) => {
     setRole(role);
     localStorage.setItem("user", user);
     localStorage.setItem("role", role);
-
-    console.log(user + ", " + role);
   };
 
   const logout = () => {
@@ -33,7 +31,6 @@ const AuthProvider = ({ children }) => {
     const storedRole = localStorage.getItem("role");
 
     if (storedToken) {
-    
       fetch(import.meta.env.VITE_BACKEND + "/api/v1/auth/user", {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
@@ -45,10 +42,9 @@ const AuthProvider = ({ children }) => {
           setToken(storedToken);
         } else {
           logout();
-          
         }
       });
-    }  
+    }
   }, []);
 
   return (
@@ -58,8 +54,8 @@ const AuthProvider = ({ children }) => {
   );
 };
 
-export const useAuth = () => {
+const useAuth = () => {
   return useContext(AuthContext);
 };
 
-export default AuthProvider;
+export { AuthProvider, AuthContext, useAuth };
