@@ -1,4 +1,4 @@
-import { useAuth } from "../components/auth";
+import { useAuth } from "../hooks/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import ProfileSection from "../components/ProfileSection";
 import ProfileNavbar from "../components/ProfileNavBar";

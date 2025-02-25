@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../components/auth";
+import { useAuth } from "../hooks/AuthProvider";
 import { useNavigate, useParams } from "react-router-dom";
 import DataProperty from "../components/DataProperty";
 import ProprtyImages from "../components/PropertyImages";
@@ -182,7 +182,10 @@ export default function PropertyControllPage() {
               {property.isPublic ? (
                 <span className=" text-xl font-bold text-red-700"> PUBLIC</span>
               ) : (
-                <span className=" text-xl font-bold text-red-700"> PRIVATE</span>
+                <span className=" text-xl font-bold text-red-700">
+                  {" "}
+                  PRIVATE
+                </span>
               )}
             </p>
             <span className=" text-xl font-bold text-red-700"></span>

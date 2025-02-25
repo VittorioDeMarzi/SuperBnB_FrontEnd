@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../components/auth";
+import { useAuth } from "../hooks/AuthProvider";
 
 export default function ProfileSection() {
   const auth = useAuth();
@@ -86,7 +86,7 @@ export default function ProfileSection() {
   if (loading) {
     return <p className="text-center">Loading...</p>;
   }
-  
+
   if (error) {
     return <p className="text-center text-red-500">{error}</p>;
   }

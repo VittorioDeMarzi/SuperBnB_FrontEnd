@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../components/auth";
+import { useAuth } from "../hooks/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
 export default function AddProperty() {
@@ -116,7 +116,6 @@ export default function AddProperty() {
   return (
     <>
       <section className="container mx-auto p-12 min-h-screen">
-        
         <form
           className=" p-12 bg-slate-50 grid grid-flow-row gap-5 shadow-md"
           onSubmit={submit}

@@ -32,7 +32,7 @@ export default function BookingPage() {
       console.log(data);
       if (data) {
         console.log(data);
-        navigate("/booking-confirmation", { state: data });
+        navigate("/user/booking-confirmation", { state: data });
       }
     } catch (error) {
       console.error("Error:", error.message);
