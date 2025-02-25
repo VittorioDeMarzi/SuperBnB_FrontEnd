@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useAuth } from "../hooks/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
@@ -81,8 +81,8 @@ export default function AddProperty() {
     event.preventDefault();
 
     if (validate()) {
-      console.log(property);
-      console.log(JSON.stringify(property));
+      // console.log(property);
+      // console.log(JSON.stringify(property));
       try {
         const response = await fetch(
           import.meta.env.VITE_BACKEND + "/api/v1/superbeb/property",
@@ -104,8 +104,8 @@ export default function AddProperty() {
         }
 
         const data = await response.json();
-        console.log(data);
-        console.log(data.id);
+        // console.log(data);
+        // console.log(data.id);
         navigate(`/property-controll/${data.id}`);
       } catch (error) {
         console.error("Error:", error.message);

@@ -17,9 +17,8 @@ export default function LoginPage() {
       email,
       password,
     };
-    console.log(auth);
+    // console.log(auth);
     const encoded = btoa(email + ":" + password);
-    console.log(`${import.meta.env.VITE_BACKEND}/api/v1/auth/signin`);
     try {
       const response = await fetch(
         import.meta.env.VITE_BACKEND + "/api/v1/auth/signin",
@@ -41,9 +40,9 @@ export default function LoginPage() {
       }
 
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       login(data.token, data.email, data.role);
-      console.log(data.token, data.email, data.role)
+      // console.log(data.token, data.email, data.role)
       navigate("/home");
     } catch (error) {
       console.error("Error:", error.message);

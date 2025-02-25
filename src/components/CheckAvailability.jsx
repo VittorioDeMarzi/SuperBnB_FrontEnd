@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 export default function CheckAvailability({ propertyId }) {
   const [availability, setAvailability] = useState(null);
   const filters = sessionStorage.getItem("filters");
-  console.log("filters, ",  filters.city)
+  // console.log("filters, ",  filters.city)
 
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -42,7 +42,6 @@ export default function CheckAvailability({ propertyId }) {
       if (!response.ok)
         throw new Error(`Something went wrong , Error: ${response.text}`);
       const data = await response.json();
-      console.log(data);
       if (data) setAvailability(data);
     } catch (error) {
       console.error("Error:", error.message);

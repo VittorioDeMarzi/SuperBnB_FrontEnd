@@ -14,7 +14,7 @@ export default function Signup() {
       username,
       password,
     };
-    console.log(auth);
+    // console.log(auth);
 
     try {
       const response = await fetch(

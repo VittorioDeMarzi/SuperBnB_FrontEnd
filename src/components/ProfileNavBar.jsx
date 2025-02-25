@@ -5,7 +5,7 @@ const ProfileNavbar = () => {
   return (
     <nav className="-mt-12 text-black flex justify-center space-x-6 py-4">
       <NavLink
-        to="/profile"
+        to="/user/profile"
         className={({ isActive }) =>
           `px-4 py-2 rounded-md transition ${
             isActive
