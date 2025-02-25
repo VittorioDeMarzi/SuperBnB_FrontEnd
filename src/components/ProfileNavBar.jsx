@@ -17,7 +17,7 @@ const ProfileNavbar = () => {
         User Details
       </NavLink>
       <NavLink
-        to="/booking-history"
+        to="/user/booking-history"
         className={({ isActive }) =>
           `px-4 py-2 rounded-md transition ${
             isActive

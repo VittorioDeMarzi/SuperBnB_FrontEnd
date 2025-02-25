@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useAuth } from "./auth";
+import { useAuth } from "../hooks/AuthProvider";
 
 export default function Navbar() {
   const auth = useAuth();
@@ -14,17 +14,15 @@ export default function Navbar() {
         <ul className="flex justify-center space-x-4 items-center ">
           <Link to="/aboutus">About Us</Link>
           <li>Contacts</li>
-          <Link to="/Profile">
+          <Link to="/user/profile">
             <li>Profile</li>
           </Link>
           {role === "ADMIN" && (
             <>
-      
-            <Link to="/admin-overview">
-              <li>Admin Overview</li>
-            </Link>
+              <Link to="/admin-overview">
+                <li>Admin Overview</li>
+              </Link>
             </>
-            
           )}
           {!auth.token && (
             <Link to="/login">

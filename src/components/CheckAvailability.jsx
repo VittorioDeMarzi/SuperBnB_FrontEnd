@@ -140,7 +140,7 @@ export default function CheckAvailability({ propertyId }) {
               </div>
               <button
                 onClick={() =>
-                  navigate(`/booking/${propertyId}`, {
+                  navigate(`/user/booking/${propertyId}`, {
                     state: { formData, availability },
                   })
                 }

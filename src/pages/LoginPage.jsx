@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from '../components/auth';
+import { useAuth } from "../hooks/AuthProvider";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -40,13 +40,14 @@ export default function LoginPage() {
         }
       }
 
-      const data = await response.json(); 
-      console.log(data)
-      login(data.token, data.email, data.role); 
-      navigate("/home"); 
+      const data = await response.json();
+      console.log(data);
+      login(data.token, data.email, data.role);
+      console.log(data.token, data.email, data.role)
+      navigate("/home");
     } catch (error) {
       console.error("Error:", error.message);
-      setError(error.message); 
+      setError(error.message);
     }
   }
 
@@ -87,9 +88,7 @@ export default function LoginPage() {
                 required
               />
             </div>
-            <Link to="/signup">
-              Don't have an account? Sign up
-              </Link>
+            <Link to="/signup">Don't have an account? Sign up</Link>
             <button
               type="submit"
               className="w-full bg-dark_violet hover:bg-violet text-white font-bold py-2 rounded"
