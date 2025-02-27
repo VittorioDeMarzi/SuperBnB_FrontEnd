@@ -15,7 +15,7 @@ const Map = ({ address }) => {
         const data = await response.json();
         if (data && data.length > 0) {
           // console.log(data);
-          // const { lat, lon } = data[0];
+          const { lat, lon } = data[0];
           setPosition([lat, lon]);
           // console.log(position);
         } else console.log("no map")

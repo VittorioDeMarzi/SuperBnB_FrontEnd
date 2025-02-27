@@ -29,7 +29,7 @@ export default function BookingPage() {
 
       const data = await response.json();
       if (data) {
-        // console.log(data);
+        console.log(data);
         navigate("/user/booking-confirmation", { state: data });
       }
     } catch (error) {

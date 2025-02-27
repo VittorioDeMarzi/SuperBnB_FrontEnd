@@ -5,7 +5,10 @@ export default function DataProperty({ property }) {
 
   if (!property) {
     return (
-      <p className="text-center text-gray-500">Loading property details...</p>
+      <>
+        <p className="text-center text-gray-500">Loading property details...</p>
+        <span className="mx-auto loading loading-dots loading-lg"></span>
+      </>
     );
   }
 

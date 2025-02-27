@@ -11,7 +11,7 @@ export default function PropertyControllPage() {
   const [uploading, setUploading] = useState(false);
   const [loadPropertyDetails, setLoadPropertyDetails] = useState(false);
   const [error, setError] = useState("");
-  // const [visibilityMessage, setVisibilityMessage] = useState("");
+  const [visibilityMessage, setVisibilityMessage] = useState("");
 
   useEffect(() => {
     fetchDataApartment();
@@ -40,6 +40,7 @@ export default function PropertyControllPage() {
       }
       const data = await response.json();
       setProperty(data);
+      console.log(data);
     } catch (error) {
       console.error("Error fetching property:", error);
     }
@@ -90,14 +91,12 @@ export default function PropertyControllPage() {
             `HTTP error! Status: ${response.status} - ${errorMessage}`
           );
         }
-
-        /*  const data = await response.json();
-      console.log(data); */
-        setSelectedImgs([]);
-        setLoadPropertyDetails((old) => !old);
-        setUploading(false);
       } catch (error) {
         console.error("Error uploading images:", error);
+      } finally {
+        setSelectedImgs([]);
+        setUploading(false);
+        setLoadPropertyDetails((old) => !old);
       }
     } else {
       setError("Please select first Images");
@@ -108,6 +107,7 @@ export default function PropertyControllPage() {
   }
 
   async function changeVisibility() {
+    setVisibilityMessage(null);
     try {
       const response = await fetch(
         `${
@@ -127,18 +127,17 @@ export default function PropertyControllPage() {
         );
       }
 
-      const data = await response.text();
-      // setVisibilityMessage(data);
+      const data = await response.json();
+      console.log("Visibility changed:", data);
+      setVisibilityMessage("Visibility changed successfully");
       setLoadPropertyDetails((old) => !old);
-      // setTimeout(() => {
-      //   setVisibilityMessage("");
-      // }, 3000);
     } catch (error) {
-      console.error("Error occurred changing visibility:", error.message);
-      // setVisibilityMessage("Error occurred changing visibility");
-      // setTimeout(() => {
-      //   setVisibilityMessage("");
-      // }, 3000);
+      console.error("Error changing visibility:", error.message);
+      setVisibilityMessage("Error occurred while changing visibility");
+    } finally {
+      setTimeout(() => {
+        setVisibilityMessage("");
+      }, 3000);
     }
   }
 
@@ -185,7 +184,7 @@ export default function PropertyControllPage() {
                 </span>
               )}
             </p>
-            
+
             <span className=" text-xl font-bold text-red-700"></span>
             <button
               onClick={changeVisibility}

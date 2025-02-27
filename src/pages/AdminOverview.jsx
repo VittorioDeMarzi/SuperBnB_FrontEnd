@@ -2,40 +2,56 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function AdminOverview() {
-    const [allProperties, setAllProperties] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [allProperties, setAllProperties] = useState([]);
   const navigate = useNavigate();
 
-    useEffect(() => {
-        loadPropertiesList();
-    }, []);
+  useEffect(() => {
+    loadPropertiesList();
+  }, []);
 
-    async function loadPropertiesList() {
-        try {
-            const response = await fetch(
-                import.meta.env.VITE_BACKEND + "/api/v1/superbeb/property",
-                {
-                    method: "GET",
-                    headers: {
-                        Authorization: "Bearer " + localStorage.getItem("token"),
-                    },
-                }
-            );
-            if (!response.ok) throw new Error("Error loading Properties List");
-
-            const data = await response.json();
-            setAllProperties(data);
-        } catch (error) {
-            console.log("Error:", error.message);
+  async function loadPropertiesList() {
+    setError(null);
+    setIsLoading(true);
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_BACKEND + "/api/v1/superbeb/property",
+        {
+          method: "GET",
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
         }
-    }
+      );
+      if (!response.ok) throw new Error("Error loading Properties List");
 
-    function viewDetails(propertyId) {
-        navigate(`/property-controll/${propertyId}`);
+      const data = await response.json();
+      setAllProperties(data);
+    } catch (error) {
+      console.log("Error:", error.message);
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
     }
-    
-    function addProperty() {
-        navigate("/add-property")
-}
+  }
+
+  function viewDetails(propertyId) {
+    navigate(`/property-controll/${propertyId}`);
+  }
+
+  function addProperty() {
+    navigate("/add-property");
+  }
+
+  if (isLoading)
+    return (
+      <div className="container mx-auto p-4 min-h-screen">
+        <span className="loading loading-dots loading-lg"></span>
+      </div>
+    );
+  if (error)
+    return <div className="container mx-auto p-4 min-h-screen">{error}</div>;
 
   return (
     <>
@@ -53,7 +69,6 @@ export default function AdminOverview() {
                   <th className="text-left py-2 px-4">House Number</th>
                   <th className="text-left py-2 px-4">Visibility</th>
                   <th className="text-right py-2 px-4"></th>
-
                 </tr>
               </thead>
               <tbody>
@@ -65,10 +80,12 @@ export default function AdminOverview() {
                     <td className="py-2 px-4">{property.city}</td>
                     <td className="py-2 px-4">{property.street}</td>
                     <td className="py-2 px-4">{property.houseNumber}</td>
-                    <td className="py-2 px-4">{property.isPublic ? (<p>Public</p>) : (<p>Private</p>)}</td>
+                    <td className="py-2 px-4">
+                      {property.isPublic ? <p>Public</p> : <p>Private</p>}
+                    </td>
                     <td className="py-2 px-4 text-right">
                       <button
-                        onClick={() =>viewDetails(property.id)}
+                        onClick={() => viewDetails(property.id)}
                         className=" bg-violet hover:bg-indigo-400 text-white font-bold py-2 px-4 rounded"
                       >
                         View Details
@@ -82,10 +99,13 @@ export default function AdminOverview() {
         ) : (
           <p className="text-center text-gray-500">The list is empty</p>
         )}
-              <button
-                  onClick={() => addProperty()}
-                  className=" bg-violet hover:bg-indigo-400  text-white font-bold py-2 px-4 rounded">Add Property</button>
-          </div>
+        <button
+          onClick={() => addProperty()}
+          className=" bg-violet hover:bg-indigo-400  text-white font-bold py-2 px-4 rounded"
+        >
+          Add Property
+        </button>
+      </div>
     </>
   );
 }
