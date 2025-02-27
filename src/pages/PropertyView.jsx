@@ -59,11 +59,11 @@ export default function PropertyView() {
   }
 
   if (loading) {
-    return <p className="text-center">Loading...</p>;
+    return <p className="text-center container mx-auto p-4 min-h-screen">Loading...</p>;
   }
 
   if (error) {
-    return <p className="text-center text-red-500">{error}</p>;
+    return <p className="text-center text-red-500 container mx-auto p-4 min-h-screen">{error}</p>;
   }
 
   return (
