@@ -53,7 +53,7 @@ export default function SearchBar({ filters, setFilters, setLoadProperties }) {
         <>
           <div className="w-full max-w-6xl mx-auto p-4">
             <form
-              className="bg-white bg-opacity-50 py-3 rounded-lg sm:rounded-full shadow-lg px-12 mb-5"
+              className="bg-white bg-opacity-50 py-3 rounded-lg md:rounded-full shadow-lg px-12 mb-5"
               onSubmit={handleSearch}
             >
               <div className="flex flex-col md:flex-row space-y-0 md:space-y-0 md:space-x-4">
