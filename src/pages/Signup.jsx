@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import headerPic from "/src/assets/images/manuel-moreno-DGa0LQ0yDPc-unsplash.jpg";
 
 export default function Signup() {
   const [username, setUsername] = useState("");
@@ -39,7 +40,10 @@ export default function Signup() {
 
   return (
     <>
-      <div className="parallax relative bg-[url('src/assets/images/manuel-moreno-DGa0LQ0yDPc-unsplash.jpg')] bg-fixed bg-center bg-no-repeat bg-cover h-[70vh] mb-4">
+      <div
+        className="parallax relative bg-fixed bg-center bg-no-repeat bg-cover h-[70vh] mb-4"
+        style={{ backgroundImage: `url(${headerPic})` }}
+      >
         <div className="absolute inset-0 bg-white bg-opacity-30"></div>
 
         <section className=" flex justify-center items-center absolute inset-0">
