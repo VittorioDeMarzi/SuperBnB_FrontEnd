@@ -92,7 +92,7 @@ export default function ProfileSection() {
   }
 
   return (
-    <div className="p-6 max-w-7xl mx-auto bg-white rounded-xl shadow-md space-y-4">
+    <div className="p-6 bg-white rounded-xl shadow-md space-y-4">
       <h3 className="text-center text-ocra font-bold text-3xl mb-6">
         Profile Information
       </h3>

@@ -38,8 +38,8 @@ export default function BookingPage() {
   }
 
   return (
-    <div className="mx-auto p-12 min-h-screen">
-      <div className="p-12 bg-slate-50 grid grid-flow-row gap-5 shadow-md">
+    <div className="">
+      <div className="p-12 bg-slate-50 grid gap-10 shadow-md">
         <ProfileSection />
 
         <BookingRequestInfo formData={formData} availability={availability} />
