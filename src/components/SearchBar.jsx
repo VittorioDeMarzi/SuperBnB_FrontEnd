@@ -39,7 +39,7 @@ export default function SearchBar({ filters, setFilters, setLoadProperties }) {
   function handleSearch(e) {
     e.preventDefault();
     setLoadProperties((old) => !old);
-    sessionStorage.setItem("filters", JSON.stringify(filters))
+    sessionStorage.setItem("filters", JSON.stringify(filters));
     navigate("/searchpage", { state: { filters } });
   }
 
@@ -53,10 +53,10 @@ export default function SearchBar({ filters, setFilters, setLoadProperties }) {
         <>
           <div className="w-full max-w-6xl mx-auto p-4">
             <form
-              className="bg-white bg-opacity-50 py-3 rounded-full shadow-lg px-12 mb-5"
+              className="bg-white bg-opacity-50 py-3 rounded-lg md:rounded-full shadow-lg px-12 mb-5"
               onSubmit={handleSearch}
             >
-              <div className="flex space-x-4">
+              <div className="flex flex-col md:flex-row space-y-0 md:space-y-0 md:space-x-4">
                 {/* city */}
                 <div className="flex-1">
                   <label
@@ -77,7 +77,7 @@ export default function SearchBar({ filters, setFilters, setLoadProperties }) {
                     // placeholder="Select a city"
                     isSearchable
                     isClearable
-                    className="w-full mt-1 px-3 py-2"
+                    className="w-full mt-1"
                     styles={{
                       control: (base) => ({
                         ...base,
@@ -170,24 +170,28 @@ export default function SearchBar({ filters, setFilters, setLoadProperties }) {
                     className="w-full mt-1 px-3 py-2  bg-white bg-opacity-0 focus:outline-none"
                   />
                 </div>
-                <button className="self-center">
-                  <img
-                    className="w-12 text-orange-500"
-                    src={searchLogo}
-                    alt="search"
-                  />
-                </button>
-                <button className="self-center">
-                  <img
-                    className="w-12 text-orange-500"
-                    src={filtersLogo}
-                    alt="filters"
-                    onClick={(e) => openFilters()}
-                  />
-                </button>
+                <div className="flex items-center space-x-4 justify-center">
+                  <button type="submit" className="self-center">
+                    <img
+                      className="w-12"
+                      src={searchLogo}
+                      alt="search"
+                    />
+                  </button>
+                  <button className="self-center">
+                    <img
+                      className="w-12"
+                      src={filtersLogo}
+                      alt="filters"
+                      onClick={(e) => openFilters()}
+                    />
+                  </button>
+                </div>
               </div>
             </form>
-            {isFiltersOpen && <FilterDrawer filters={filters} setFilters={setFilters} />}
+            {isFiltersOpen && (
+              <FilterDrawer filters={filters} setFilters={setFilters} />
+            )}
           </div>
         </>
       )}

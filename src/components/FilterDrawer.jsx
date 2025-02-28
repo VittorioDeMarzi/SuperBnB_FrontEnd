@@ -1,8 +1,8 @@
 export default function FilterDrawer({ filters, setFilters }) {
   return (
     <>
-      <div className="bg-white bg-opacity-50 p-6 rounded-lg shadow-lg w-full flex justify-around items-center gap-2">
-        {/* Prezzo Minimo */}
+      <div className="bg-white bg-opacity-50 p-4 md:p-6 rounded-lg shadow-lg w-full flex flex-col md:flex-row justify-around items-center gap-2">
+        {/* Minimum Price */}
         <div>
           <label
             htmlFor="minPrice"
@@ -25,7 +25,7 @@ export default function FilterDrawer({ filters, setFilters }) {
           />
         </div>
 
-        {/* Prezzo Massimo */}
+        {/* Maximum Price */}
         <div>
           <label
             htmlFor="maxPrice"
@@ -47,7 +47,7 @@ export default function FilterDrawer({ filters, setFilters }) {
           />
         </div>
 
-        {/* Numero di Camere */}
+        {/* N Rooms */}
         <div>
           <label
             htmlFor="rooms"
@@ -58,7 +58,7 @@ export default function FilterDrawer({ filters, setFilters }) {
           <input
             type="number"
             id="rooms"
-            placeholder="N° Camere"
+            placeholder="N° Rooms"
             className="bg-white bg-opacity-50 w-full mt-1 px-3 py-2 border rounded-md focus:outline-none"
             onChange={(e) =>
               setFilters({
