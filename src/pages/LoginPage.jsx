@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/AuthProvider";
+import headerPic from "/src/assets/images/manuel-moreno-DGa0LQ0yDPc-unsplash.jpg"
+
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -52,7 +54,8 @@ export default function LoginPage() {
 
   return (
     <>
-      <div className="parallax relative bg-[url('src/assets/images/manuel-moreno-DGa0LQ0yDPc-unsplash.jpg')] bg-fixed bg-center bg-no-repeat bg-cover h-[70vh] mt-12 mb-4">
+      <div className="parallax relative bg-fixed bg-center bg-no-repeat bg-cover h-[70vh] mt-12 mb-4"
+      style={{ backgroundImage: `url(${headerPic})` }}>
         <div className="absolute inset-0 bg-white bg-opacity-30"></div>
 
         <section className=" flex justify-center items-center absolute inset-0">
