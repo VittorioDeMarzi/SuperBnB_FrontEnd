@@ -18,11 +18,9 @@ export default function Navbar() {
         </Link>
         <ul className="flex justify-center space-x-4 items-center  ">
           {role === "ADMIN" && (
-            <>
-              <Link to="/admin-overview">
-                <li>Admin</li>
-              </Link>
-            </>
+            <li>
+              <Link to="/admin-overview">Admin</Link>
+            </li>
           )}
           <div className="dropdown dropdown-end">
             <button tabIndex={0} className="btn btn-square btn-ghost">
@@ -45,15 +43,11 @@ export default function Navbar() {
               className="dropdown-content menu bg-slate-300 rounded-box z-[1] w-52 p-2 shadow mt-5"
             >
               <li>
-                <Link to="/user/profile">
-                  <li>Profile</li>
-                </Link>
+                <Link to="/user/profile">Profile</Link>
               </li>
               {!auth.token && (
                 <li>
-                  <Link to="/login">
-                    <li>Log In / Sign Up</li>
-                  </Link>
+                  <Link to="/login">Log In / Sign Up</Link>
                 </li>
               )}
               {auth.token && (
