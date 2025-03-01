@@ -12,10 +12,14 @@ export default function Navbar() {
 
   return (
     <nav className=" bg-background bg-opacity-70 shadow fixed top-0 left-0 w-full z-10">
-      <div className="mx-auto px-4 py-0 flex justify-between ">
+      <div className="mx-auto px-4 py-0 flex justify-between items-center gap-6">
         <Link to="/home" className="flex items-center">
           <h1 className=" font-bold ext-slate-700 text-2xl">SuperBnB.</h1>
         </Link>
+        <p className="text-xs md:text-sm font-semibold">
+          🔔 <span className="mr-2">SuperBnB is a demo project.</span>
+          <Link to="/disclaimer" className="underline font-bold hover:text-yellow-700">Learn more</Link>
+        </p>
         <ul className="flex justify-center space-x-4 items-center  ">
           {role === "ADMIN" && (
             <li>

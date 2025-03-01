@@ -21,6 +21,7 @@ import SearchLandingPage from "./pages/SearchLandingPage.jsx";
 import UserBookings from "./pages/UserBookings.jsx";
 import ProtectedRouteAdmin from "./hooks/ProtectedRouteAdmin.jsx";
 import AdminLayout from "./Layouts/AdminLayout.jsx";
+import Disclaimer from "./pages/Disclaimer.jsx";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: "/aboutus",
         element: <AboutUs />,
+      },
+      {
+        path: "/disclaimer",
+        element: <Disclaimer />,
       },
       {
         path: "/user",
