@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <>
       <div 
-      className="parallax relative bg-scroll md:bg-fixed bg-center bg-no-repeat bg-cover h-[70vh] text-white mb-4"
+      className="relative bg-scroll md:bg-fixed bg-center bg-no-repeat bg-cover h-[70vh] text-white mb-4"
       style={{ backgroundImage: `url(${headerPic})` }}>
         {/* Overlay to lighten the background */}
         <div className="absolute inset-0 bg-white bg-opacity-30"></div>
