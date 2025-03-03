@@ -27,11 +27,11 @@ export default function Footer() {
       </footer>
       <footer className="footer bg-slate-950 text-zinc-300 px-10 py-4">
         <aside className="grid-flow-col items-center">
-          <img src={logo} alt="logo" className="w-24"/>
+          <img src={logo} alt="logo" className="w-28"/>
           <p>
-            ACME Industries Ltd.
+            VDM Industries Ltd.
             <br />
-            Providing reliable tech since 1992
+            Providing reliable tech since 2024
           </p>
         </aside>
         <nav className="md:place-self-center md:justify-self-end">
