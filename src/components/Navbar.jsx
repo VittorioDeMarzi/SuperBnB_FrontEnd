@@ -45,7 +45,7 @@ export default function Navbar() {
             <ul
               tabIndex={0}
               className="dropdown-content menu bg-slate-300 rounded-box z-[1] w-52 p-2 shadow mt-5"
-            >
+              >
               <li>
                 <Link to="/user/profile">Profile</Link>
               </li>
@@ -61,6 +61,9 @@ export default function Navbar() {
               )}
               <li>
                 <Link to="/aboutus">About Us</Link>
+              </li>
+              <li>
+                <Link to="/disclaimer">Disclaimer</Link>
               </li>
               <li>
                 <p>Contacts</p>
