@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../hooks/AuthProvider";
 
 export default function Navbar() {
-  const auth = useAuth();
-  const { role } = useAuth();
+  const auth = useAuth() || {};
+  const { role } = useAuth() || {};
 
   const handleLogOut = () => {
     auth.logout();
@@ -18,7 +18,12 @@ export default function Navbar() {
         </Link>
         <p className="text-xs md:text-sm font-semibold">
           🔔 <span className="mr-2">SuperBnB is a demo project.</span>
-          <Link to="/disclaimer" className="underline font-bold hover:text-yellow-700">Learn more</Link>
+          <Link
+            to="/disclaimer"
+            className="underline font-bold hover:text-yellow-700"
+          >
+            Learn more
+          </Link>
         </p>
         <ul className="flex justify-center space-x-4 items-center  ">
           {role === "ADMIN" && (
@@ -45,7 +50,7 @@ export default function Navbar() {
             <ul
               tabIndex={0}
               className="dropdown-content menu bg-slate-300 rounded-box z-[1] w-52 p-2 shadow mt-5"
-              >
+            >
               <li>
                 <Link to="/user/profile">Profile</Link>
               </li>
