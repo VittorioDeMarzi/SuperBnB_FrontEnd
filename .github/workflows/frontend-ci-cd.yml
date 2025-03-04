@@ -26,7 +26,7 @@ jobs:
       run: npm test
       
     - name: Build project
-      if: success() # Procede solo se i test hanno successo
+      if: success()
       run: npm run build
     
     - name: Deploy to Render
