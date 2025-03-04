@@ -19,7 +19,7 @@ export default function Navbar() {
         <p className="text-xs md:text-sm font-semibold">
           🔔 <span className="mr-2">SuperBnB is a demo project.</span>
           <Link
-            to="/disclaimer"
+            to="/aboutus"
             className="underline font-bold hover:text-yellow-700"
           >
             Learn more
